@@ -1,9 +1,6 @@
 ﻿module Sqrt
 
-
-let square x = x * x
-let abs x = if x > 0.0 then x else -x
-let average x y = (x + y) / 2.0
+open Math
 
 // Newton method to calculate squre root.
 

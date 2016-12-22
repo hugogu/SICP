@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Math.fs" />
     <Compile Include="Sqrt.fs" />
+    <Compile Include="Rational.fs" />
     <Compile Include="Main.fs" />
     <None Include="App.config" />
   </ItemGroup>
