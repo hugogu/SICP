@@ -1,6 +1,6 @@
 ﻿module Math
 
-let square x:float = x * x
-let abs x = if x > 0.0 then x else -x
-let average x y = (x + y) / 2.0
+let inline square x = x * x
+let inline abs x = if x > LanguagePrimitives.GenericZero then x else -x
+let inline average x y = (x + y) / (LanguagePrimitives.GenericOne + LanguagePrimitives.GenericOne)
 let rec gcd a b = if b = 0 then a else gcd b (a % b)

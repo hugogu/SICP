@@ -17,4 +17,10 @@ let main argv =
     printfn "round: %A" (rect_round rect)
     printfn "area: %A" (rect_area rect)
 
+    let intervalA = make_center_percent 6.8 0.1
+    let intervalB = make_center_percent 4.7 0.05
+
+    printfn "part1: %A" (part1 intervalA intervalB)
+    printfn "part2: %A" (part2 intervalA intervalB)
+
     0
