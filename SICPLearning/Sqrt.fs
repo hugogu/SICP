@@ -1,6 +1,7 @@
 ﻿module Sqrt
 
 open Math
+open Stream
 
 // Newton method to calculate squre root.
 
@@ -44,7 +45,17 @@ let newton_method f =
 
 let sqrt_v4 x =
   newton_method (fun y -> y * y - x)
-  
+
+let sqrt_stream x = 
+  let inline avg_damping f = fun x -> average x (f x)
+  let getNext = avg_damping (fun v -> x * 1.0 / v)
+  let rec s = fun () -> Stream(1.0, fun () -> s() |> Stream.Map getNext)
+  s()
+
+let sqrt_stream_v2 x =
+  let inline avg_damping f = fun x -> average x (f x)
+  let getNext = avg_damping (fun v -> x * 1.0 / v)
+  Stream.Infinit getNext 1.0
 
 let sqrt_v5 x = 
   let rec search f a b = 
@@ -65,3 +76,4 @@ let sqrt_v5 x =
     | (x, y) when x > 0.0 && y < 0.0 -> search f b a
     | (x, y) -> invalidArg "a" "f a must be of different sign with f b."
   half_interval_method (fun v -> v * v - x) 0.0 x
+
