@@ -50,6 +50,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Math.fs" />
     <Compile Include="Stream.fs" />
+    <Compile Include="SymbolicDifferentition.fs" />
     <Compile Include="Sqrt.fs" />
     <Compile Include="Rational.fs" />
     <Compile Include="Main.fs" />
