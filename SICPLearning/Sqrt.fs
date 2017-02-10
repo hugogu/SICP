@@ -2,6 +2,8 @@
 
 open Math
 open Stream
+open SymbolicDifferentition
+open Microsoft.FSharp.Linq.RuntimeHelpers
 
 // Newton method to calculate squre root.
 
@@ -46,6 +48,12 @@ let newton_method f =
 let sqrt_v4 x =
   newton_method (fun y -> y * y - x)
 
+let sqrt_v5 (y: float) = 
+  let exp = <@ fun x -> x * x - y @>
+  let f =  exp |>             LeafExpressionConverter.EvaluateQuotation :?> ( float -> float )
+  let Df = exp |> derivExp |> LeafExpressionConverter.EvaluateQuotation :?> ( float -> float )
+  find_fix_point (fun x -> x - f x / Df x) 1.0
+
 let sqrt_stream x = 
   let inline avg_damping f = fun x -> average x (f x)
   let getNext = avg_damping (fun v -> x * 1.0 / v)
@@ -57,7 +65,7 @@ let sqrt_stream_v2 x =
   let getNext = avg_damping (fun v -> x * 1.0 / v)
   Stream.Infinit getNext 1.0
 
-let sqrt_v5 x = 
+let sqrt_v6 x = 
   let rec search f a b = 
     let close_enough target tolerance value = (abs (target - value)) < tolerance
     let avg = (a + b) / 2.0

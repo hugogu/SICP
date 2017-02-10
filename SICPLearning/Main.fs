@@ -13,11 +13,12 @@ let main argv =
 
     numStream.iterate (fun item -> printfn "%A" item)
 
-    printfn "%A" (sqrt_v1 2.0)
-    printfn "%A" (sqrt_v2 2.0)
-    printfn "%A" (sqrt_v3 2.0)
-    printfn "%A" (sqrt_v4 2.0)
-    printfn "%A" (sqrt_v5 2.0)
+    printfn "sqrt_v1 %A" (sqrt_v1 2.0)
+    printfn "sqrt_v2 %A" (sqrt_v2 2.0)
+    printfn "sqrt_v3 %A" (sqrt_v3 2.0)
+    printfn "sqrt_v4 %A" (sqrt_v4 2.0)
+    printfn "sqrt_v5 %A" (sqrt_v5 2.0)
+    printfn "sqrt_v6 %A" (sqrt_v6 2.0)
 
     let sqrts = sqrt_stream 2.0
     sqrts.iterateWhen (fun v -> printfn "sqrt_stream: %A" v) (fun v -> abs(v * v - 2.0) > 0.0001)
@@ -33,7 +34,7 @@ let main argv =
     let der = (derivExp exp)
     printfn "deriv: %A" der
     let derf = LeafExpressionConverter.EvaluateQuotation der :?> ( float -> float )
-    // printfn "deriv at 2.0: %A" (derf 2.0)
+    printfn "deriv at 2.0: %A" (derf 2.0)
 
     let rect = make_rect 5.0 8.0
     printfn "round: %A" (rect_round rect)
