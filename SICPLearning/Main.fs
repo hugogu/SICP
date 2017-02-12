@@ -2,6 +2,7 @@
 open Rational
 open Stream
 open SymbolicDifferentition
+open Timing
 open Microsoft.FSharp.Linq.RuntimeHelpers
 
 [<EntryPoint>]
@@ -13,12 +14,12 @@ let main argv =
 
     numStream.iterate (fun item -> printfn "%A" item)
 
-    printfn "sqrt_v1 %A" (sqrt_v1 2.0)
-    printfn "sqrt_v2 %A" (sqrt_v2 2.0)
-    printfn "sqrt_v3 %A" (sqrt_v3 2.0)
-    printfn "sqrt_v4 %A" (sqrt_v4 2.0)
-    printfn "sqrt_v5 %A" (sqrt_v5 2.0)
-    printfn "sqrt_v6 %A" (sqrt_v6 2.0)
+    printfn "sqrt_v0 %A" (timeit sqrt_v0 2.0 1000)
+    printfn "sqrt_v1 %A" (timeit sqrt_v1 2.0 1000)
+    printfn "sqrt_v2 %A" (timeit sqrt_v2 2.0 1000)
+    printfn "sqrt_v3 %A" (timeit sqrt_v3 2.0 1000)
+    printfn "sqrt_v4 %A" (timeit sqrt_v4 2.0 1000)
+    printfn "sqrt_v5 %A" (timeit sqrt_v5 2.0 1000)
 
     let sqrts = sqrt_stream 2.0
     sqrts.iterateWhen (fun v -> printfn "sqrt_stream: %A" v) (fun v -> abs(v * v - 2.0) > 0.0001)
